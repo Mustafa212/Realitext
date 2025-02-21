@@ -1,0 +1,102 @@
+.section{
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(90deg, #c0dbea 0%, #dd9ccd 100%);
+
+
+}
+.containere{
+    width: 80%;
+    height: 80%;
+    background-color: white;
+}
+.side{
+    background-color: #c0dbea;
+}
+.loginimg{
+    position: absolute;
+    bottom: -3%;
+    right: 6%;
+    width: 650px;
+    z-index: 2;
+}
+.loginimg2{
+    width: 185px;
+    bottom: 7%;
+    right: 8%;
+    z-index: 0;
+}
+.form{
+    height: 80%;
+    width: 65%;
+}
+.logo{
+    color: #d885a3 ;
+    font-size: 36px !important;
+    font-weight: 600 !important;
+}
+.maintxt{
+    font-size: 56px !important;
+    font-weight: 600 !important;
+
+}
+.forget{
+    font-size: 14px;
+}
+.eyeicon{
+    color: #d885a3;
+    top: 7px;
+    font-size: medium;
+    right: 15px;
+}
+.customebtn{
+    background-color: #d885a3;
+    color: white;
+    width: 150px;
+    
+}
+.buttontxt{
+    font-size: 16px;
+    font-weight: 600;
+}
+.customeAddon{
+    background-color: transparent !important;
+ 
+}
+.customeinput{
+    background-color: #c0dbea;
+    border: none !important;
+    box-shadow: none;
+}
+.customeinput:active,.customeinput:focus{
+    background-color: #c0dbea;
+    border: none !important;
+    box-shadow: none;
+}
+.smalltxt{
+    font-size: 16px;
+    font-weight: lighter;
+}
+.continue{
+    font-size: 14px;
+    font-weight: normal;
+    color: #6096B4;
+    margin-top: 40px;
+}
+.cutomebtn2{
+    border: 1px solid #c0dbea;
+}
+.dont-have-account{
+    font-size: 12px;
+    font-weight: normal;
+    opacity: 0.5;
+}
+.signup{
+    color:#d885a3 ;
+    opacity: 1 !important;
+    font-size: 12px;
+    font-weight: normal;
+    text-decoration: none;
+
+}
+/* #d885a3 button */

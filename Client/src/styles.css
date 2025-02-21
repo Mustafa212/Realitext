@@ -1,8 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@300;400;600;700&family=Roboto:wght@300;400;600;700&display=swap');
+
 *{
     margin: 0%;
     padding: 0%;
     box-sizing: border-box;
 }
+:root{
+    --primary-color:#7d149f;
+    --secondary-color:#000000;
+}
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body 
+{ 
+
+    margin: 0; 
+    font-family: 'Poppins', sans-serif;
+
+}
+/* h1, h2 {
+font-family: 'Poppins', sans-serif;
+}
+
+p {
+font-family: 'Roboto', sans-serif;
+}
+
+button {
+font-family: 'Montserrat', sans-serif;
+font-weight: 600;
+} */
