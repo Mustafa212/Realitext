@@ -7,8 +7,9 @@
     box-sizing: border-box;
 }
 :root{
-    --primary-color:#7d149f;
-    --secondary-color:#000000;
+    --primary-color:#670a85;
+    --secondary-color:#0AA885;
+    --Neutral-background: #FFFFFF;
 }
 html, body { height: 100%; }
 body 

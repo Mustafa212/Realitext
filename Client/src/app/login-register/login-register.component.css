@@ -1,37 +1,94 @@
 .section{
     width: 100vw;
     height: 100vh;
-    background: linear-gradient(90deg, #c0dbea 0%, #dd9ccd 100%);
-
-
+    /* background: linear-gradient(90deg,var(--primary-color) 0%,  var( --secondary-color) 100%); */
+    overflow: hidden;
 }
 .containere{
     width: 80%;
     height: 80%;
-    background-color: white;
+    /* background-color: var(--Neutral-background); */
 }
 .side{
-    background-color: #c0dbea;
+    /* background-color: var( --primary-color); */
 }
+.circle{
+    top: -3%;
+    right: -30%;
+    height: 1000px;
+    width: 1000px;
+    border-radius: 50%;
+    /* background: linear-gradient(to right,var(--primary-color) 0%,  var( --secondary-color) 100%); */
+    background-color: var( --primary-color);
+    z-index: -1;
+    animation: bounceIn 0.8s forwards;
+
+}
+@keyframes bounceIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.3);
+
+
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.05);
+
+
+    }
+    70% {
+      transform: scale(0.9);
+
+
+    }
+    100% {
+      transform: scale(1);
+
+
+    }
+  }
+.man{
+    display: none;
+    opacity: 0;
+}
+.women{
+    display: block;
+}
+
 .loginimg{
     position: absolute;
-    bottom: -3%;
-    right: 6%;
+    bottom: 10%;
+    right: 11%;
     width: 650px;
     z-index: 2;
+    animation: bounceIn 0.6s forwards;
+
+}
+.plant2
+{
+    display: none;
+    opacity: 0;
+    width: 250px !important;
+}
+.plant1{
+    display: block;
 }
 .loginimg2{
-    width: 185px;
-    bottom: 7%;
-    right: 8%;
+    width: 400px;
+    bottom: 13%;
+    right:5%;
     z-index: 0;
+    animation: bounceIn 0.6s forwards;
+
 }
+
 .form{
     height: 80%;
-    width: 65%;
+    width: 75%;
 }
 .logo{
-    color: #d885a3 ;
+    color:  var(--primary-color) ;
     font-size: 36px !important;
     font-weight: 600 !important;
 }
@@ -44,13 +101,13 @@
     font-size: 14px;
 }
 .eyeicon{
-    color: #d885a3;
+    color:  var(--Neutral-background);
     top: 7px;
     font-size: medium;
     right: 15px;
 }
 .customebtn{
-    background-color: #d885a3;
+    background-color:  black;
     color: white;
     width: 150px;
     
@@ -64,15 +121,15 @@
  
 }
 .customeinput{
+    /* background-color: #6e96b1; */
+    /* border: none !important;
+    box-shadow: none; */
+}
+/* .customeinput:active,.customeinput:focus{
     background-color: #c0dbea;
     border: none !important;
     box-shadow: none;
-}
-.customeinput:active,.customeinput:focus{
-    background-color: #c0dbea;
-    border: none !important;
-    box-shadow: none;
-}
+} */
 .smalltxt{
     font-size: 16px;
     font-weight: lighter;
@@ -80,11 +137,11 @@
 .continue{
     font-size: 14px;
     font-weight: normal;
-    color: #6096B4;
+    color: var(--primary-color) ;
     margin-top: 40px;
 }
 .cutomebtn2{
-    border: 1px solid #c0dbea;
+    border: 1px solid var(--primary-color) ;
 }
 .dont-have-account{
     font-size: 12px;
@@ -92,11 +149,16 @@
     opacity: 0.5;
 }
 .signup{
-    color:#d885a3 ;
+    color: var(--primary-color) ;
     opacity: 1 !important;
     font-size: 12px;
     font-weight: normal;
     text-decoration: none;
+    cursor: pointer;
 
 }
+.my-text span {
+    will-change: transform, opacity;
+}
+
 /* #d885a3 button */
