@@ -1,0 +1,142 @@
+<section class="section d-flex justify-content-center align-items-center position-relative">
+  <h4 class="logo mt-3 fw-bold position-absolute " style="top: 2%;left: 3%;" data-aos="fade-up" data-aos-delay="0">RealiText</h4>
+
+  <div class="containere rounded-5 d-flex">
+    <div class="col-8 h-100 d-flex align-items-center holdere" >
+      <div class="form ms-5 d-flex flex-column justify-content-start p-3 "
+      [ngClass]="!isSignUp?'pt-5 mt-5':''">
+        <small *ngIf="!isSignUp" data-aos="fade-up" data-aos-delay="50" class="mt-1 mb-2" style="font-size: 16px; font-weight: normal">
+          Welcome back !!!
+        </small>
+        <small *ngIf="isSignUp" data-aos="fade-up" data-aos-delay="50" class="mt-1 mb-2" style="font-size: 16px; font-weight: normal">
+          Happy to let you in !!!
+        </small>
+        <h1 class="fw-bold maintxt my-text" *ngIf="!isSignUp">Log In</h1>
+        <h1 class="fw-bold maintxt my-text" *ngIf="isSignUp">Sign Up</h1>
+        <form  [formGroup]="form"  (ngSubmit)="onSubmit()" class="mt-3 d-flex flex-column w-75">
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label smalltxt"
+            data-aos="fade-up" data-aos-delay="150">Email</label
+            >
+            <input
+              type="email"
+              formControlName="email"
+              class="form-control customeinput"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+              [placeholder]="!isSignUp?'Login@gmail.com':'Register@gmail.com'"
+              data-aos="fade-up" data-aos-delay="250"
+            />
+            <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="text-danger mt-1">
+              <small *ngIf="email?.errors?.['required']">Email is required</small>
+              <small *ngIf="email?.errors?.['email']">Invalid email format</small>
+            </div>
+          </div>
+          <div class="d-flex justify-content-between w-100 mt-2 ">
+            <label for="Password" class="form-label smalltxt"
+            data-aos="fade-up" data-aos-delay="300"
+            >Password</label>
+            <span class="smalltxt" style="font-size: 14px; opacity: 0.5"
+            data-aos="fade-up" data-aos-delay="300"
+            *ngIf="!isSignUp"
+            >Forget Password?
+              </span>
+          </div>
+          <div class="input-group  w-100 position-relative mb-1" data-aos="fade-up" data-aos-delay="350">
+            <input
+              type="password"
+              class="form-control customeinput"
+              placeholder="Password"
+              aria-label="Password"
+              id="Password"
+              formControlName="password"
+
+              aria-describedby="basic-addon2"
+            />
+            <i class="bi bi-eye-slash eyeicon position-absolute"></i>
+           
+          </div>
+          <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="text-danger mt-1">
+            <small *ngIf="password?.errors?.['required']">Password is required</small>
+            <small *ngIf="password?.errors?.['minlength']">
+              Password must be at least 6 characters
+            </small>
+          </div>
+
+          <div class="mb-3  mt-2" *ngIf="isSignUp"   data-aos="fade-up" data-aos-delay="300"
+          >
+            <label for="confirmPassword" class="form-label smalltxt">Confirm Password</label>
+            <input
+              type="password"
+              class="form-control customeinput"
+              id="confirmPassword"
+              formControlName="confirmPassword"
+              placeholder="Confirm your password"
+            />
+            <div *ngIf="confirmPassword?.invalid && (confirmPassword?.dirty || confirmPassword?.touched)" 
+                 class="text-danger mt-1">
+              <small *ngIf="confirmPassword?.errors?.['required']">Confirm Password is required </small>
+              <small *ngIf="confirmPassword?.errors?.['isMatching']">Passwords do not match</small>
+            </div>
+          </div>
+
+
+
+          <div
+            class="w-100 d-flex justify-content-center align-items-center mt-4"
+            data-aos="fade-up" data-aos-delay="400"
+
+          >
+            <button class="btn customebtn rounded-5" [disabled]="form.invalid || loading">
+              <span *ngIf="!loading">
+                {{ isSignUp ? 'SIGN UP' : 'LOGIN' }}
+              </span>             
+              <i class="bi bi-arrow-right"></i>
+            </button>
+          </div>
+        </form>
+        <div class="w-75 d-flex justify-content-center continue"  data-aos="fade-up" data-aos-delay="450"
+        >
+          <span [ngStyle]="{'color': !isSignUp ? 'var(--primary-color)' : 'var(--secondary-color)'}">or continue with</span>
+        </div>
+        <div class="w-75 mt-3 d-flex justify-content-center"  data-aos="fade-up" data-aos-delay="450">
+          <button class="btn w-75 mx-auto cutomebtn2 rounded-5"
+            [ngStyle]="{'border-color': !isSignUp ? 'var(--primary-color)' : 'var(--secondary-color)'}"
+          >
+            <img src="/images/Google.png" alt="" width="25px" />
+          </button>
+        </div>
+        <div class="change w-75 d-flex justify-content-center mt-3"  data-aos="fade-up" data-aos-delay="450">
+          <span class="dont-have-account"
+          data-aos="fade-up" data-aos-delay="450"
+          *ngIf="!isSignUp"
+            >Don't have an account yet?&nbsp;&nbsp;</span>
+          <span class="dont-have-account"
+          data-aos="fade-up" data-aos-delay="450"
+          *ngIf="isSignUp"
+            >Already Have An Account?&nbsp;&nbsp;</span>
+          <a class="signup" data-aos="fade-up" data-aos-delay="450"  *ngIf="!isSignUp"  (click)="ToggleSignUp()">Sign Up For Free</a>
+          <a class="signup" style="color: var(--secondary-color);" data-aos="fade-up" data-aos-delay="450"  *ngIf="isSignUp" (click)="ToggleSignUp()">Login Now</a>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="col-4 h-100 side rounded-5 position-relative"> -->
+      <img src="/images/loginwoman.png" alt="loginimg" class="loginimg women" />
+      <img src="/images/loginwoman2.png" alt="loginimg" class="loginimg man" />
+
+      <img
+        src="/images/plant.png"
+        alt="loginimg2"
+        class="loginimg2 position-absolute plant1"
+      />
+      <img
+      src="/images/plant2.png"
+      alt="loginimg2"
+      class="loginimg2 position-absolute plant2"
+      />
+    <!-- </div> -->
+  </div>
+  <div class="position-absolute circle shadow-lg">
+
+  </div>
+</section>
