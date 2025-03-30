@@ -1,0 +1,13 @@
+<div class="w-100 p-4 position-fixed top-0 z-1 navs" style="height: 85px;" *ngIf="!navService.isAnimated()" [attr.data-aos]="'fade-down'" data-aos-duration="200">
+  <div class="w-75 d-flex justify-content-between align-items-center mx-auto">
+    <div class="w-25">
+      <img src="/images/bot2.png" alt="logo" width="70px">
+    </div>
+    <div class="w-25 d-flex justify-content-end align-items-center">
+      
+      <button class="btn customebtn rounded-4 ms-4"
+      (click)="NavigatetoSignIn()">Sign In</button>
+    </div>
+  </div>
+
+</div>

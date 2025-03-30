@@ -7,6 +7,7 @@ import { AccountService } from '../_services/account.service';
 import { Router } from '@angular/router';
 import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
 import { HotToastService } from '@ngneat/hot-toast';
+import { NavigationsService } from '../_services/navigations.service';
 
 
 @Component({
@@ -21,6 +22,8 @@ export class LoginRegisterComponent implements AfterViewInit,OnInit{
   private fb = inject(FormBuilder);
   private router = inject(Router);
   private accountService = inject(AccountService);
+  navService = inject(NavigationsService);
+
   form!: FormGroup;
   loading = false;
   errorMessage: string | null = null;
@@ -256,5 +259,11 @@ export class LoginRegisterComponent implements AfterViewInit,OnInit{
       //   }
       // });
     }
+  }
+
+
+  NavigatetoHome(){
+    this.router.navigate(['/']);
+    this.navService.isLoggingIn.set(false);
   }
 }

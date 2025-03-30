@@ -1,6 +1,7 @@
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
-
+import player from 'lottie-web';
+import { provideLottieOptions } from 'ngx-lottie';
 import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideHotToastConfig } from '@ngneat/hot-toast';
@@ -16,6 +17,9 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     provideHotToastConfig(),
     provideHttpClient(withInterceptors([errorInterceptor,jwtInterceptor ])),
+    provideLottieOptions({
+      player: () => player,
+    }),
 
   ]
 };

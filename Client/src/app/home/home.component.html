@@ -1,0 +1,151 @@
+<section class="home position-relative d-flex justify-content-center align-items-center">
+  <span class="Preloading">realitext</span>
+  <img src="/images/Evilbot.png" alt="Evilbot" class="Evilbot" width="80px">
+  <img src="/images/goodbot.png" alt="GoodBot" class="Goodbot" width="70px">
+
+  <div class="circles">
+    <div class="circle circle-1"></div>
+    <div class="circle circle-2"></div>
+    <div class="circle circle-3"></div>
+    
+  </div>
+  
+  <div class="container mt-5 w-75 bg-transparent main d-flex p-3 column-gap-2 shadow rounded-4" *ngIf="!navService.isAnimated()" [attr.data-aos]="'fade-up'" data-aos-duration="300" data-aos-delay="200">
+    <div class="col-7 h-100  d-flex flex-column align-items-center justify-content-center">
+        <textarea class="col-12 p-4  textarea rounded-4 bg-transparent  " placeholder="ادخل النص"
+        (focus)="isTextareaActive.set(true)"
+        (blur)="isTextareaActive.set(false)"></textarea>
+        <div class="col-12 d-flex justify-content-between align-items-center mt-3">
+            <div class="d-flex ms-2">
+                <div class="btn-group dropup bg-transparent">
+                    <button type="button" class="btn customebtn2 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-paperclip fs-6"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" (click)="ExtractPdf()">Upload Pdf</a></li>
+                        <li><a class="dropdown-item" (click)="ExtractWord()">Upload WordFile</a></li>
+                        <li><a class="dropdown-item" (click)="ExtractTxt()">Upload TextFile</a></li>
+                    </ul>
+                  </div>
+            </div>
+            <div > 
+                <button class="btn customebtn" (click)="Analyse()">Analyse Text</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-5 h-100 d-flex flex-column">
+        <ngx-charts-pie-chart
+            [view]="view"
+            [scheme]="colorScheme"
+            [results]="data"
+            [gradient]="true"
+            [legend]="false"
+            [labels]="true"
+            [doughnut]="isDoughnut"
+            [explodeSlices]="true">
+      </ngx-charts-pie-chart>
+      <div class="p-2 text-secondary">
+        <p>Human Confidence Percentage: <b class="text-dark">{{HumanPercentage}}</b> %</p>
+        <p>AI Confidence Percentage: <b  class="text-dark">{{AiPercentage}}</b> %</p>
+
+      </div>
+    </div>
+  </div>
+  <div class="position-absolute lott"
+  [ngClass]="isTextareaActive()?'resideit':''"
+  *ngIf="!navService.isAnimated()" [attr.data-aos]="'fade-up'" data-aos-duration="300" data-aos-delay="200">
+    <app-gaming-robot *ngIf="!isTextareaActive()" [attr.data-aos]="'fade-in'"></app-gaming-robot>
+    <app-hi-robot *ngIf="isTextareaActive()" [attr.data-aos]="'fade-in'"></app-hi-robot> 
+  </div>
+</section>
+
+<!-- <div class="d-flex flex-column align-items-center justify-content-center min-vh-100 p-6 position-relative custom-gradient animate-gradient">
+
+    <div class="position-absolute w-100 d-flex justify-content-center top-0">        
+        <h1 id="realitext" class="realitext pacifico-regular">realitext</h1>
+    </div>
+
+    <div class="position-absolute top-5 bg-light border border-primary rounded-3 p-4 w-75 shadow text-center mt-5">
+        <div class="d-flex align-items-center justify-content-center text-dark fw-bold mb-3">
+            <span class="me-2">💡</span> Quick Tips for Better Results
+        </div>
+        <ul class="text-dark list-unstyled">
+            <li class="d-flex align-items-center mb-2">
+                <span class="text-primary me-2">✔</span> Provide at least <b>3-4 sentences</b> for accuracy.
+            </li>
+            <li class="d-flex align-items-center mb-2">
+                <span class="text-primary me-2">✔</span> Upload files in <b>.txt or .pdf</b> format.
+            </li>
+            <li class="d-flex align-items-center mb-2">
+                <span class="text-primary me-2">✔</span> Check the <b>confidence score</b> for reliability.
+            </li>
+            <li class="d-flex align-items-center">
+                <span class="text-primary me-2">✔</span> Your <b>feedback</b> helps improve accuracy!
+            </li>
+        </ul>
+    </div>
+
+    <div class="bg-light p-4 rounded-3 shadow w-100 max-w-1200 mt-40 border border-primary">
+        <div class="row g-4">
+            <div class="col-md-6 border border-primary rounded-3 p-3 bg-white">
+                <textarea class="w-100 min-h-300 p-3 border border-primary rounded-3 text-dark" 
+                          placeholder="Paste your text here"></textarea>
+                <div class="d-flex align-items-center justify-content-between mt-3 text-primary">
+                    <span>0/20000</span>
+                    <input type="file" class="d-none" id="fileUpload" />
+                    <label for="fileUpload" class="btn btn-primary text-white px-4 py-2 rounded-3">
+                        📂 Upload File
+                    </label>
+                </div>
+            </div>
+
+            <div class="col-md-6 border border-primary rounded-3 p-3 bg-white text-center">
+                <canvas id="aiChart"></canvas>
+                <p class="text-primary mt-3">of text is likely AI-Generated</p>
+                <div class="d-flex justify-content-center gap-4 mt-3">
+                    <div class="d-flex align-items-center">
+                        <span class="bg-primary rounded-circle me-2" style="width:15px;height:15px"></span> 
+                        AI Generated 0%
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <span class="bg-info rounded-circle me-2" style="width:15px;height:15px"></span> 
+                        Human Generated 0%
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="btn btn-gradient text-white px-5 py-3 mt-5 rounded-3 shadow">
+        🛡️ AI Detector
+    </button>
+
+</div>
+
+<footer class="bg-dark text-light py-5 px-4 w-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-4 text-center text-md-start">
+                <h3 class="h5">AI Text Detector</h3>
+                <p class="small">Advanced AI technology to help distinguish between AI-generated and human-written text.</p>
+            </div>
+            
+            <div class="col-md-4 mb-4 text-center text-md-start">
+                <h3 class="h5">Quick Links</h3>
+                <ul class="list-unstyled small">
+                    <li class="mb-2"><a href="#" class="text-light">About</a></li>
+                    <li class="mb-2"><a href="#" class="text-light">Privacy Policy</a></li>
+                    <li><a href="#" class="text-light">Terms of Service</a></li>
+                </ul>
+            </div>
+            
+            <div class="col-md-4 text-center text-md-start">
+                <h3 class="h5">Connect</h3>
+                <a href="mailto:support@example.com" class="text-light h4">✉️</a>
+            </div>
+        </div>
+        <div class="text-center small mt-5">
+            © 2025 AI Text Detector. All rights reserved.
+        </div>
+    </div>
+</footer> -->

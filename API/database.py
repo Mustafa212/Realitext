@@ -11,7 +11,7 @@ users_collection = database.get_collection("users")
 async def create_indexes():
     sync_client = MongoClient(MONGO_DETAILS)
     db = sync_client["auth_database"]
-    db.users.create_index("username", unique=True)
+    db.users.create_index("username", unique=False)
     db.users.create_index("email", unique=True)
 
 # Create indexes when app starts

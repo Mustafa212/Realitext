@@ -1,0 +1,17 @@
+.navbar{
+    height: 80px !important;
+    color: black !important;
+}
+.customebtn{
+    background-color: var(--primary-color);
+    color: white;
+    min-width: 100px;
+    font-size: large;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+.customebtn:hover{
+    background-color: var(--secondary-color);
+    color: black;
+}
+
