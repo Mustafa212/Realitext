@@ -1,0 +1,13 @@
+.quick{
+    color: var( --primary-color);
+    font-size: 62px;
+    font-weight: bolder;
+}
+.quote1{
+    bottom: -10%;
+    left: -5%;
+}
+.holder{
+   height: 60%;
+   background-color: #0aa88619;
+}
