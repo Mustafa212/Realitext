@@ -3,12 +3,16 @@ import { environmentdev } from "../../environments/environment.development";
 
 export class Config {
   //server
-  public static apiUrl = environment.serverUrl;
-  // public static apiUrl = environmentdev.serverUrl;
+  // public static apiUrl = environment.serverUrl;
+  public static apiUrl = environmentdev.serverUrl;
 
   // Identity
   public static Identity = {
-    login: "/api/Account/login",
-    register: "/api/Account/register",
+    login: "login",
+    register: "register",
+    classify: "classify",
+    extract: "extract",
+    feedback:"feedback",
+    token:"token"
   };
 }

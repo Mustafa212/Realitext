@@ -17,12 +17,13 @@ export class AccountService {
 
   login(email:string, password:string){
     let query = {
-      email: email,
+      username: email,
       password: password
     }
     return this.http.post<User>(this.baseurl+Config.Identity.login , query).pipe(
       map(
         user=>{
+          console.log(user)
           if(user) this.setCurrentUser(user)
           return user  
         }
@@ -30,11 +31,13 @@ export class AccountService {
     );
   }
   register(email:string, password:string){
-    let query = {
-      email: email,
-      password: password
-    }
-    return this.http.post<string>(this.baseurl+Config.Identity.register , query);
+    
+    return this.http.post(this.baseurl+Config.Identity.register , {
+      params:{
+        username: email,
+        password: password
+      }
+    });
   }
   setCurrentUser(user:User){
     this.currentuser.set(user);

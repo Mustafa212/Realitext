@@ -230,34 +230,50 @@ export class LoginRegisterComponent implements AfterViewInit,OnInit{
     const { email, password } = this.form.value;
 
     if (this.isSignUp) {
-      this.toast.show('Custom Styled Toast!', {
-        style: {
-          background: '#670a85', // Dark purple background
-          color: '#ffffff' // White text
-        },
-        icon: '🔥'
-      });
-      // this.accountService.register(email, password).subscribe({
-      //   next: () => {
-      //     this.router.navigate(['/dashboard']);
-      //   },
-      //   error: (err) => {
-      //     this.errorMessage = err.message;
-      //     this.loading = false;
-      //   }
-      // });
-    } else {
-      this.toast.success("login")
+      console.log("Sign Up")
+      this.accountService.register(email, password).subscribe({
+        next: (res) => {
+          console.log("Sign Up next")
+          console.log(res)
 
-      // this.accountService.login(email, password).subscribe({
-      //   next: () => {
-      //     this.router.navigate(['/dashboard']);
-      //   },
-      //   error: (err) => {
-      //     this.errorMessage = err.message;
-      //     this.loading = false;
-      //   }
-      // });
+          this.toast.show('Account Created Successfully!', {
+            style: {
+              background: '#670a85', // Dark purple background
+              color: '#ffffff' // White text
+            },
+            icon: '🔥'
+          });
+          this.router.navigateByUrl('/login');
+        },
+        error: (err) => {
+          console.log("Sign Up err")
+          console.log(err)
+          this.errorMessage = err.message;
+          this.loading = false;
+        }
+      });
+      console.log("after Sign Up")
+
+    } else {
+      this.accountService.login(email, password).subscribe({
+        next: () => {
+          this.toast.show('Logged In Successfully!', {
+            style: {
+              background: '#670a85', // Dark purple background
+              color: '#ffffff' // White text
+            },
+            icon: '🔥'
+          });
+          this.NavigatetoHome()
+
+        },
+        error: (err) => {
+          console.log("Login err")
+          this.errorMessage = err.message;
+          this.loading = false;
+        }
+      });
+      
     }
   }
 

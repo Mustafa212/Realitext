@@ -5,11 +5,11 @@ import { Injectable } from '@angular/core';
 })
 export class BrowserDbService {
   setItem(key: string, value: any) {
-    return localStorage.setItem(key, JSON.stringify(value))
+    return sessionStorage.setItem(key, JSON.stringify(value))
   }
 
   getItem(key: string) {
-    const item = localStorage.getItem(key);
+    const item = sessionStorage.getItem(key);
     if (item) {
       try {
         return JSON.parse(item);
@@ -21,7 +21,7 @@ export class BrowserDbService {
   }
 
   clearLocalStorage(): void {
-    localStorage.clear();
+    sessionStorage.clear();
   }
 
   setCookie(name: string, value: string, days: number): void {
