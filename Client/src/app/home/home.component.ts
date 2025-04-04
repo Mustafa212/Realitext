@@ -10,6 +10,8 @@ import { Color } from '@swimlane/ngx-charts';
 import { ScaleType } from '@swimlane/ngx-charts';
 import { GamingRobotComponent } from "../_lottie/gaming-robot/gaming-robot.component";
 import { HiRobotComponent } from "../_lottie/hi-robot/hi-robot.component";
+import { ModelService } from '../_services/model.service';
+import { HotToastService } from '@ngneat/hot-toast';
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -19,6 +21,9 @@ import { HiRobotComponent } from "../_lottie/hi-robot/hi-robot.component";
 })
 export class HomeComponent implements AfterViewInit,OnInit {
   navService = inject(NavigationsService);
+  modelService = inject(ModelService)
+  private toast = inject(HotToastService)
+  
   private splitTextInstance: SplitType | null = null;
   view: [number, number] = [440, 350];
   isTextareaActive = signal(false)
@@ -29,6 +34,7 @@ export class HomeComponent implements AfterViewInit,OnInit {
     group: ScaleType.Ordinal,
     domain: ['#999']
   };
+  text:string = ""
   HumanPercentage = 0
   AiPercentage = 0
   // Dummy data for the chart
@@ -36,6 +42,7 @@ export class HomeComponent implements AfterViewInit,OnInit {
     { name: 'Luv u', value: 100 },
     
   ];
+  loading = false
 
   // Toggle doughnut style if needed
   isDoughnut = false;
@@ -131,30 +138,67 @@ export class HomeComponent implements AfterViewInit,OnInit {
   }
   EndAnimation() {
     this.navService.isAnimated.update(() => false);
-    console.log(this.navService.isAnimated());
   }
 
   Analyse(){
-    this.colorScheme = {
-      name: 'coolScheme',
-      selectable: true,
-      group: ScaleType.Ordinal,
-      domain: ['#E87BE1', '#10CFC9']
+    if (this.text =="") {
+      // ToDO
+      this.toast.warning('Please Enter Text!', {
+        style: {
+          background: '#ffcc00', // Dark purple background
+          color: '#000000' // White text
+        },
+        icon: '⚠️'
+      });
+      return
+      
     }
-    this.HumanPercentage = 20
-    this.AiPercentage = 80
-    this.data =[
-      { name: 'Human', value: this.HumanPercentage  },
-      { name: 'Ai', value:  this.AiPercentage },
+    this.loading = true
+    console.log(this.text)
+    this.modelService.classify(this.text).subscribe({
+      next: (res) => {
+        console.log(res)
+        this.colorScheme = {
+          name: 'coolScheme',
+          selectable: true,
+          group: ScaleType.Ordinal,
+          domain: ['#E87BE1', '#10CFC9']
+        }
+        res.confidence =res.confidence * 100
+        this.HumanPercentage = res.classification === "Human Generated" ? res.confidence : 100 - res.confidence
+        this.AiPercentage = res.classification === "AI Generated" ? res.confidence : 100 - res.confidence
+        this.HumanPercentage =  parseFloat(this.HumanPercentage.toFixed(2))
+        this.AiPercentage = parseFloat(this.AiPercentage.toFixed(2))
 
 
-    ]
+        this.data =[
+          { name: 'Human', value: this.HumanPercentage},
+          { name: 'Ai', value:  this.AiPercentage },
+        ]
+        this.loading = false
+
+      },
+      error: (err) => {
+        console.log(err)
+        this.loading = false
+      }
+     
+    })
+
   }
-  ExtractPdf(){
+  ExtractPdf(e:any){
+    console.log(e)
+    const file = e.target.files[0];
+  }
+  ExtractWord(e:any){
+    console.log(e)
 
   }
-  ExtractWord(){}
-  ExtractTxt(){}
+  ExtractTxt(e:any){
+    console.log(e)
+
+
+  }
 
   // inputText = '';
   // analysisResults: any = null;

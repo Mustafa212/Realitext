@@ -230,12 +230,9 @@ export class LoginRegisterComponent implements AfterViewInit,OnInit{
     const { email, password } = this.form.value;
 
     if (this.isSignUp) {
-      console.log("Sign Up")
       this.accountService.register(email, password).subscribe({
         next: (res) => {
-          console.log("Sign Up next")
-          console.log(res)
-
+    
           this.toast.show('Account Created Successfully!', {
             style: {
               background: '#670a85', // Dark purple background
@@ -246,13 +243,16 @@ export class LoginRegisterComponent implements AfterViewInit,OnInit{
           this.router.navigateByUrl('/login');
         },
         error: (err) => {
-          console.log("Sign Up err")
           console.log(err)
           this.errorMessage = err.message;
           this.loading = false;
         }
+        ,
+        complete:()=>{
+          this.loading = false;
+
+        }
       });
-      console.log("after Sign Up")
 
     } else {
       this.accountService.login(email, password).subscribe({
@@ -264,14 +264,19 @@ export class LoginRegisterComponent implements AfterViewInit,OnInit{
             },
             icon: '🔥'
           });
-          this.NavigatetoHome()
+          this.router.navigateByUrl("/home")
 
         },
         error: (err) => {
-          console.log("Login err")
           console.log(err)
           this.errorMessage = err.message;
           this.loading = false;
+        },
+        complete:()=>{
+          this.loading = false;
+          this.navService.isLoggingIn.set(false);
+
+
         }
       });
       

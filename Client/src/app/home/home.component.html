@@ -14,7 +14,9 @@
     <div class="col-7 h-100  d-flex flex-column align-items-center justify-content-center">
         <textarea class="col-12 p-4  textarea rounded-4 bg-transparent  " placeholder="ادخل النص"
         (focus)="isTextareaActive.set(true)"
-        (blur)="isTextareaActive.set(false)"></textarea>
+        (blur)="isTextareaActive.set(false)"
+        [(ngModel)]="text"
+        ></textarea>
         <div class="col-12 d-flex justify-content-between align-items-center mt-3">
             <div class="d-flex ms-2">
                 <div class="btn-group dropup bg-transparent">
@@ -22,14 +24,29 @@
                         <i class="bi bi-paperclip fs-6"></i>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" (click)="ExtractPdf()">Upload Pdf</a></li>
-                        <li><a class="dropdown-item" (click)="ExtractWord()">Upload WordFile</a></li>
-                        <li><a class="dropdown-item" (click)="ExtractTxt()">Upload TextFile</a></li>
+                        <li>
+                            <label class="dropdown-item" for="uploadPdf">Upload Pdf</label>
+                            <input type="file" id="uploadPdf" accept=".pdf" style="display: none;" (change)="ExtractPdf($event)">
+                        </li>
+                        <li>
+                            <label class="dropdown-item" for="uploadWord">Upload WordFile</label>
+                            <input type="file" id="uploadWord" accept=".doc,.docx" style="display: none;" (change)="ExtractWord($event)">
+                        </li>
+                        <li>
+                            <label class="dropdown-item" for="uploadTxt">Upload TextFile</label>
+                            <input type="file" id="uploadTxt" accept=".txt" style="display: none;" (change)="ExtractTxt($event)">
+                        </li>
                     </ul>
                   </div>
             </div>
             <div > 
-                <button class="btn customebtn" (click)="Analyse()">Analyse Text</button>
+                <button class="btn " (click)="Analyse()"
+                [ngClass]="this.loading?'loading d-flex justify-content-center align-items-center cbtn2':'customebtn'"
+                >
+                <span *ngIf="!loading">Analyse Text</span> 
+                <div class="loader" *ngIf="loading"></div>
+            
+            </button>
             </div>
         </div>
     </div>

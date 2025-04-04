@@ -10,13 +10,16 @@ export class ModelService {
   private http = inject(HttpClient);
   baseurl = Config.apiUrl;
   classify(text:string){
-      var query={ 
-        Text : text
-      }
-        return this.http.post<response>(
-          this.baseurl + Config.Identity.classify,
-        query        
-        );
+    var query={ 
+      text : text
+    }
+    return this.http.post<response>(this.baseurl + Config.Identity.classify,query);
+  }
+
+  extract(file:File){
+    const formData: FormData = new FormData();
+    formData.append('file', file, file.name);
+    return this.http.post<any>(this.baseurl + Config.Identity.extract,formData);
   }
 
 }

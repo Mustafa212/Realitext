@@ -127,7 +127,7 @@
 }
 .lott{
     bottom: 3%;
-    right: 9%;
+    right: 5%;
     width: 300px;
     height: 300px;
 }
@@ -135,3 +135,28 @@
     bottom: 6%;
     right: 7%;
 }
+.loading{
+    background-color: #ddd !important;
+    color: var(--primary-color) !important;
+}
+
+.cbtn2{
+    min-width: 140px !important;
+
+}
+
+/* HTML: <div class="loader"></div> */
+/* HTML: <div class="loader"></div> */
+.loader {
+    width: 25px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: 
+      radial-gradient(farthest-side,var(--primary-color) 94%,#0000) top/8px 8px no-repeat,
+      conic-gradient(#0000 30%,var(--primary-color));
+    -webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 8px),#000 0);
+    animation: l13 1s infinite linear;
+  }
+  @keyframes l13{ 
+    100%{transform: rotate(1turn)}
+  }
