@@ -15,30 +15,29 @@ export class AccountService {
   private browserDb = inject(BrowserDbService);
  
 
-  login(email:string, password:string){
-    let query = {
-      username: email,
-      password: password
-    }
-    return this.http.post<User>(this.baseurl+Config.Identity.login , query).pipe(
-      map(
-        user=>{
-          console.log(user)
-          if(user) this.setCurrentUser(user)
-          return user  
-        }
-      )
+  login(email: string, password: string) {
+  var query={ 
+    username :email,
+   password: password,
+  }
+    return this.http.post<User>(
+      this.baseurl + Config.Identity.login,
+    query
+    ).pipe(
+      map(user => {
+        console.log(user);
+        if (user) this.setCurrentUser(user);
+
+        return user;
+      })
     );
   }
-  register(email:string, password:string){
-    
-    return this.http.post(this.baseurl+Config.Identity.register , {
-      params:{
-        username: email,
-        password: password
-      }
-    });
+  
+  register(email: string, password: string) {
+  return this.http.post(`${this.baseurl + Config.Identity.register}?username=${email}&password=${password}`,{}
+    );
   }
+  
   setCurrentUser(user:User){
     this.currentuser.set(user);
     this.browserDb.setItem("user" , user);

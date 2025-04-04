@@ -269,6 +269,7 @@ export class LoginRegisterComponent implements AfterViewInit,OnInit{
         },
         error: (err) => {
           console.log("Login err")
+          console.log(err)
           this.errorMessage = err.message;
           this.loading = false;
         }
