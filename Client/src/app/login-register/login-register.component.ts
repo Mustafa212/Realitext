@@ -124,7 +124,7 @@ export class LoginRegisterComponent implements AfterViewInit,OnInit{
     timeline.to(".circle", 
       { 
       duration: 1,
-      left:this.isSignUp?  "62%":"-30%",  
+      left:this.isSignUp?  "62%":"-22%",  
       backgroundColor:this.isSignUp?"#670a85": "#0AA885",
       ease: "power1.inOut"
       }

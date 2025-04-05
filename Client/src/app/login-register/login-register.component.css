@@ -14,9 +14,9 @@
 }
 .circle{
     top: -3%;
-    right: -30%;
-    height: 1000px;
-    width: 1000px;
+    right: -22%;
+    height: 850px;
+    width: 850px;
     border-radius: 50%;
     /* background: linear-gradient(to right,var(--primary-color) 0%,  var( --secondary-color) 100%); */
     background-color: var( --primary-color);
@@ -59,8 +59,8 @@
 .loginimg{
     position: absolute;
     bottom: 10%;
-    right: 11%;
-    width: 650px;
+    right: 16%;
+    width: 550px;
     z-index: 2;
     animation: bounceIn 0.6s forwards;
 
@@ -69,7 +69,7 @@
 {
     display: none;
     opacity: 0;
-    width: 250px !important;
+    width: 150px !important;
 }
 .plant1{
     display: block;
@@ -77,7 +77,7 @@
 .loginimg2{
     width: 400px;
     bottom: 13%;
-    right:5%;
+    right:10%;
     z-index: 0;
     animation: bounceIn 0.6s forwards;
 

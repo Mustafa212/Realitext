@@ -93,7 +93,7 @@
     }
 }
 .main{
-    height: 60%;
+    height: 65%;
 }
 .textarea{
     border: 2px dashed #a6a6a6;
@@ -126,7 +126,7 @@
     color: white !important;
 }
 .lott{
-    bottom: 3%;
+    bottom: -2%;
     right: 5%;
     width: 300px;
     height: 300px;
