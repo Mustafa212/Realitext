@@ -26,15 +26,15 @@
                     <ul class="dropdown-menu">
                         <li>
                             <label class="dropdown-item" for="uploadPdf">Upload Pdf</label>
-                            <input type="file" id="uploadPdf" accept=".pdf" style="display: none;" (change)="ExtractPdf($event)">
+                            <input type="file" id="uploadPdf" accept=".pdf" style="display: none;" (change)="ExtractFile($event)">
                         </li>
                         <li>
                             <label class="dropdown-item" for="uploadWord">Upload WordFile</label>
-                            <input type="file" id="uploadWord" accept=".doc,.docx" style="display: none;" (change)="ExtractWord($event)">
+                            <input type="file" id="uploadWord" accept=".doc,.docx" style="display: none;" (change)="ExtractFile($event)">
                         </li>
                         <li>
                             <label class="dropdown-item" for="uploadTxt">Upload TextFile</label>
-                            <input type="file" id="uploadTxt" accept=".txt" style="display: none;" (change)="ExtractTxt($event)">
+                            <input type="file" id="uploadTxt" accept=".txt" style="display: none;" (change)="ExtractFile($event)">
                         </li>
                     </ul>
                   </div>

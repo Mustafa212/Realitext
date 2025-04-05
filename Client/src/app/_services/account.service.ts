@@ -42,9 +42,15 @@ export class AccountService {
     this.currentuser.set(user);
     this.browserDb.setItem("user" , user);
   }
-  GetCurrentUser():User{
-    return this.browserDb.getItem("user");
-  }
+  GetCurrentUser():User|null{
+    var user:User|null=null
+    if(this.currentuser()!=null ){
+     user=this.currentuser()
+    }else{
+      user=this.browserDb.getItem("user");
+    }
+       return user
+    }
   logout(){
     this.currentuser.set(null);
     this.browserDb.clearLocalStorage();

@@ -7,4 +7,5 @@ import { toObservable } from '@angular/core/rxjs-interop';
 export class NavigationsService {
   isAnimated = signal<boolean>(true);
   isLoggingIn = signal<boolean>(false);
+
 }

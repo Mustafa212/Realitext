@@ -186,19 +186,38 @@ export class HomeComponent implements AfterViewInit,OnInit {
     })
 
   }
-  ExtractPdf(e:any){
+  
+  ExtractFile(e:any){
     console.log(e)
     const file = e.target.files[0];
-  }
-  ExtractWord(e:any){
-    console.log(e)
+    if(file.length==0|| file==null){
+      this.toast.warning('Please Upload File!', {
+        style: {
+          background: '#ffcc00', // Dark purple background
+          color: '#000000' // White text
+        },
+        icon: '⚠️'
+      });
+      return
+    }
+    this.loading=true
+    this.modelService.extract(file).subscribe({
+      next: (res) => {
+        console.log(res)
+        this.text=(res as any).extracted_text
+        this.toast.success('File Extracted Successfully!', {
+          duration:1000
+        });
+        this.loading = false
 
-  }
-  ExtractTxt(e:any){
-    console.log(e)
+      },
 
-
+      error: (err) => {
+        console.log(err)
+        this.loading = false
+      }    })
   }
+  
 
   // inputText = '';
   // analysisResults: any = null;

@@ -4,6 +4,7 @@ import { NavigationsService } from '../_services/navigations.service';
 
 import AOS from 'aos';
 import { Router } from '@angular/router';
+import { AccountService } from '../_services/account.service';
 @Component({
   selector: 'app-navs',
   standalone: true,
@@ -13,6 +14,8 @@ import { Router } from '@angular/router';
 })
 export class NavsComponent implements OnInit {
   navService = inject(NavigationsService);
+  AccountService = inject(AccountService);
+
   router = inject(Router);
   ngOnInit(): void {
     AOS.init();
@@ -20,5 +23,6 @@ export class NavsComponent implements OnInit {
   NavigatetoSignIn(){
     this.router.navigate(['/login']);
     this.navService.isLoggingIn.set(true);
+    this.AccountService.logout()
   }
 }

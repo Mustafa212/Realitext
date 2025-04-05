@@ -1,6 +1,5 @@
 <section class="section d-flex justify-content-center align-items-center position-relative">
   <h4 class="logo mt-3 fw-bold position-absolute " style="top: 2%;left: 3%; cursor: pointer;" data-aos="fade-up" data-aos-delay="0"
-  (click)="NavigatetoHome()"
   >RealiText</h4>
 
   <div class="containere rounded-5 d-flex">
@@ -89,11 +88,13 @@
             data-aos="fade-up" data-aos-delay="400"
 
           >
-            <button class="btn customebtn rounded-5" [disabled]="form.invalid || loading">
+            <button class="btn customebtn rounded-5" [disabled]="form.invalid || loading" [ngClass]="loading?'d-flex justify-content-center align-items-center':''">
               <span *ngIf="!loading">
                 {{ isSignUp ? 'SIGN UP' : 'LOGIN' }}
               </span>             
-              <i class="bi bi-arrow-right"></i>
+              <i class="bi bi-arrow-right" *ngIf="!loading"></i>
+              <div class="loader" *ngIf="loading"></div>
+
             </button>
           </div>
         </form>

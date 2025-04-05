@@ -240,7 +240,7 @@ export class LoginRegisterComponent implements AfterViewInit,OnInit{
             },
             icon: '🔥'
           });
-          this.router.navigateByUrl('/login');
+         this.ToggleSignUp()    
         },
         error: (err) => {
           console.log(err)
