@@ -275,6 +275,8 @@ export class LoginRegisterComponent implements AfterViewInit,OnInit{
         complete:()=>{
           this.loading = false;
           this.navService.isLoggingIn.set(false);
+          this.navService.isAnimated.set(true);
+
 
 
         }
